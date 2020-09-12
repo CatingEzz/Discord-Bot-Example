@@ -18,6 +18,7 @@ exports.run = async (client, message, args, guildConf) => {
         NONE: 'None',
         LOW: 'Low',
         MEDIUM: 'Medium',
+        HIGH: 'High',
         VERY_HIGH: 'Very High',};
 
     let roles = message.guild.roles.cache.map(roles => `${roles}`).join(', ').substr(0, 1024);

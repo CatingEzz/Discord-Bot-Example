@@ -12,6 +12,14 @@ exports.run = async (client, message, args, guildConf) => {
     online = (online + idle + dnd);
     let offline = message.guild.memberCount - (online + idle + dnd);
 
+
+    let boost = message.guild.premiumSubscriptionCount || '0';
+    let verificationLevels = {
+        NONE: 'None',
+        LOW: 'Low',
+        MEDIUM: 'Medium',
+        VERY_HIGH: 'Very High',};
+
     let roles = message.guild.roles.cache.map(roles => `${roles}`).join(', ').substr(0, 1024);
 
     const embed = new Discord.MessageEmbed()
@@ -35,6 +43,8 @@ Server ID: \`${message.guild.id}\`
 Region: \`${message.guild.region}\`
 Created: \`${message.guild.createdAt.toDateString()}\`
 Owner: \`${message.guild.owner.user.tag}\`
+Boost Count: \`${boost}\`
+Verification Level: \`${verificationLevels[message.guild.verificationLevel]}\`
 `, false)
 
     embed.addField(`🔰 Roles [${message.guild.roles.cache.size}]`, roles, true)
